@@ -1,0 +1,31 @@
+﻿@model StudentReport.Models.Course
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Courses</h2>
+@using (Html.BeginForm("update", "Courses"))
+{
+    <div class="form-group">
+        @Html.LabelFor(c => c.CourseName)
+        @Html.TextBoxFor(c => c.CourseName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.CourseDescription)
+        @Html.TextAreaFor(c => c.CourseDescription, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.TutorName)
+        @Html.TextBoxFor(c => c.TutorName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.CourseRating)
+        @Html.TextBoxFor(c => c.CourseRating, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+

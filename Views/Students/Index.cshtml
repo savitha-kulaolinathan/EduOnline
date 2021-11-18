@@ -1,0 +1,58 @@
+﻿@model IEnumerable<StudentReport.Models.Student>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Student's Information</h2>
+<p>
+    @Html.ActionLink("New Student", "New", "Students", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (!Model.Any())
+{
+    <p>We  dont have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Course</th>
+                <th>Date Of Enrollment</th>
+                <th>Course Status</th>
+                <th>Grade</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+
+                    <td>@student.FirstName</td>
+                    <td>@student.LastName</td>
+                    <td>@student.Course.CourseName</td>
+                    <td>@student.CourseEnrolledDate</td>
+                    @if (student.CourseStatus == 1)
+                    {
+                        <td>Progress</td>
+                    }
+                    else
+                    {
+                        <td>Completed</td>
+                    }
+                    <td>@student.Grade</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Students", new { id = student.Id }, null) |
+                        @Html.ActionLink("Remove", "Delete", "Students", new { id = student.Id }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

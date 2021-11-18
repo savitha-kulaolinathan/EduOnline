@@ -1,0 +1,44 @@
+﻿@model IEnumerable<StudentReport.Models.Course>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Available Courses</h2>
+<p>
+    @Html.ActionLink("New Courses", "New", "Courses", null, new { @class = "btn btn-primary" })
+</p>
+@if (!Model.Any())
+{
+    <p>We  dont have any courses yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+
+                <th>Course Name</th>
+                <th>Course Description</th>
+                <th>Tutor Name</th>
+                <th>Course Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+            <tr>
+                <td>@course.CourseName</td>
+                <td>@course.CourseDescription</td>
+                <td>@course.TutorName</td>
+                <td>@course.CourseRating</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Courses", new { id = course.Id }, null) |
+                    @Html.ActionLink("Remove", "Delete", "Courses", new { id = course.Id }, null)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+}
