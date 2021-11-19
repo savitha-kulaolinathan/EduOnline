@@ -37,12 +37,12 @@ namespace StudentReport.Controllers
 
 
 
-            //if (!ModelState.IsValid)
-            //{
-            //    var courses = new Course();
-                
-            //    return View("New", courses);
-            //}
+            if (!ModelState.IsValid)
+            {
+                var courses = new Course();
+
+                return View("New", courses);
+            }
             if (course.Id == 0)
                 _context.Courses.Add(course);
             else
