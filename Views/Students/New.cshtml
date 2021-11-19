@@ -5,7 +5,7 @@
 }
 
 <h2>Student Form</h2>
-@using (Html.BeginForm("Create", "Students"))
+@using (Html.BeginForm("update", "Students"))
 {
     <div class="form-group">
         @Html.LabelFor(s => s.Student.FirstName)
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(s => s.Student.BirthDate)
-        @Html.TextBoxFor(s => s.Student.BirthDate,  new { @class = "form-control" })
+        @Html.TextBoxFor(s => s.Student.BirthDate, new { @class = "form-control" })
         @Html.ValidationMessageFor(s => s.Student.BirthDate)
     </div>
     <div class="form-group">
@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(s => s.Student.CourseEnrolledDate)
-        @Html.TextBoxFor(s => s.Student.CourseEnrolledDate,  new { @class = "form-control" })
+        @Html.TextBoxFor(s => s.Student.CourseEnrolledDate, new { @class = "form-control" })
         @Html.ValidationMessageFor(s => s.Student.CourseEnrolledDate)
     </div>
     <div class="form-group">
@@ -38,7 +38,7 @@
        new SelectListItem{ Text="In Progress", Value ="1"},
        new SelectListItem{ Text="Completed", Value ="2"}
    },
-      "Select Status", ( new { @class = "form-control" }))
+       "Select Status", (new { @class = "form-control" }))
         @Html.ValidationMessageFor(s => s.Student.CourseStatus)
     </div>
     <div class="form-group">
@@ -48,5 +48,12 @@
     </div>
     @Html.HiddenFor(m => m.Student.Id)
     <button type="submit" class=" btn btn-primary">Save</button>
-        }
+}
+
+    @section scripts
+        {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
 

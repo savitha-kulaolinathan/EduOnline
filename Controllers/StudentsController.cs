@@ -40,7 +40,7 @@ namespace StudentReport.Controllers
         
         //Both create  and update
         [HttpPost]
-        public ActionResult Create(Student student)
+        public ActionResult Update(Student student)
         {
             if(!ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace StudentReport.Controllers
                 var studentInDb = _context.Students.Single(s => s.Id == student.Id);
                 studentInDb.FirstName = student.FirstName;
                 studentInDb.LastName = student.LastName;
-                studentInDb.Course = student.Course;
+                studentInDb.CourseId = student.CourseId;
                 studentInDb.CourseEnrolledDate = student.CourseEnrolledDate;
                 studentInDb.CourseStatus = student.CourseStatus;
                 studentInDb.Grade = student.Grade;

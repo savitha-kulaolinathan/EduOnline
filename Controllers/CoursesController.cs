@@ -21,7 +21,8 @@ namespace StudentReport.Controllers
         }
         public ActionResult New()
         {
-            return View();
+            var course = new Course();
+            return View("New", course);
         }
 
         public ActionResult Index()
@@ -34,6 +35,14 @@ namespace StudentReport.Controllers
         public ActionResult Update(Course course)
         {
 
+
+
+            //if (!ModelState.IsValid)
+            //{
+            //    var courses = new Course();
+                
+            //    return View("New", courses);
+            //}
             if (course.Id == 0)
                 _context.Courses.Add(course);
             else
@@ -42,25 +51,20 @@ namespace StudentReport.Controllers
                 courseInDb.CourseName = course.CourseName;
                 courseInDb.CourseDescription = course.CourseDescription;
                 courseInDb.TutorName = course.TutorName;
-                courseInDb.CourseRating = course.CourseRating;
-                
+                courseInDb.CourseRating = course.CourseRating;   
             }
-
-            _context.Courses.Add(course);
+            
             _context.SaveChanges();
              return RedirectToAction("Index", "Courses");
         }
-
-
-        public ActionResult Edit(int? id)
+        [HttpGet]
+        public ActionResult Edit(int id)
         {
             var course = _context.Courses.SingleOrDefault(c => c.Id == id);
             if (course == null)
                 return HttpNotFound();
-            _context.SaveChanges();
-
-            return View("New", course);
-            
+          
+            return View("New",course);  
         }
         public ActionResult Delete(int? id)
         {
@@ -69,10 +73,8 @@ namespace StudentReport.Controllers
             {
                 return HttpNotFound();
             }
-
             return View(courses);
         }
-
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
